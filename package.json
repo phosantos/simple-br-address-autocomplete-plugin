@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "webpack --mode development --watch --entry ./js/script.js -o ./plugin",
+    "build": "webpack --mode production --entry ./js/script.js -o ./plugin",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
