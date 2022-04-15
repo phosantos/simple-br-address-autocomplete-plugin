@@ -3,6 +3,12 @@ export default class AddressAutocomplete {
     this.form = document.querySelector(form);
   }
 
+  clearForm() {
+    [].forEach.call(this.form, (input) => {
+      input.value = '';
+    });
+  }
+
   fillForm(rua, bairro, cidade, estado) {
     this.form.rua.value = rua;
     this.form.bairro.value = bairro;
@@ -15,7 +21,12 @@ export default class AddressAutocomplete {
     fetch(this.url)
       .then((r) => r.json())
       .then((body) => {
-        this.fillForm(body.logradouro, body.bairro, body.localidade, body.uf);
+        if (!body.erro) {
+          this.fillForm(body.logradouro, body.bairro, body.localidade, body.uf);
+        } else {
+          this.clearForm();
+          alert('CEP não encontrado!');
+        }
       });
   }
 
