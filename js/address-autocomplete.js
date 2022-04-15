@@ -3,10 +3,19 @@ export default class AddressAutocomplete {
     this.form = document.querySelector(form);
   }
 
-  clearForm() {
-    [].forEach.call(this.form, (input) => {
-      input.value = '';
-    });
+  cepValidation(cep) {
+    const cleanCep = cep.replace(/\D/g, '');
+    const cepValidation = /^[0-9]{8}$/;
+    if (!(this.form.cep.value === '')) {
+      if (cepValidation.test(cleanCep)) {
+        this.fetchAddress(cleanCep);
+      } else {
+        this.clearForm();
+        alert('CEP inválido');
+      }
+    } else {
+      this.clearForm();
+    }
   }
 
   fillForm(rua, bairro, cidade, estado) {
@@ -32,7 +41,13 @@ export default class AddressAutocomplete {
 
   addCepInputEvent() {
     this.form.cep.addEventListener('change', () => {
-      this.fetchAddress(this.form.cep.value);
+      this.cepValidation(this.form.cep.value);
+    });
+  }
+
+  clearForm() {
+    [].forEach.call(this.form, (input) => {
+      input.value = '';
     });
   }
 
