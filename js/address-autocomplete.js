@@ -46,9 +46,11 @@ export default class AddressAutocomplete {
   }
 
   clearForm() {
-    [].forEach.call(this.form, (input) => {
-      input.value = '';
-    });
+    this.form.cep.value = '';
+    this.form.rua.value = '';
+    this.form.bairro.value = '';
+    this.form.cidade.value = '';
+    this.form.estado.value = '';
   }
 
   init() {
