@@ -11,7 +11,7 @@ export default class AddressAutocomplete {
         this.fetchAddress(cleanCep);
       } else {
         this.clearForm();
-        alert('CEP inválido');
+        alert('CEP inválido!');
       }
     } else {
       this.clearForm();
